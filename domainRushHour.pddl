@@ -10,7 +10,7 @@ w
     ;ciao giulia  modifica
     ;prova gamo brewewanch
 
-
+    dasdadasdada
     (:predicates
         (at ?x - macchina ?p - posizione)
         (occ ?p - posizione)
