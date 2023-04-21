@@ -1,13 +1,13 @@
 (define (domain domainName)
 
 
-
+w
     (:types
         macchina
         posizione
 
     )
-    ;ciao giulia prova modifica
+    ;ciao giulia  modifica
     ;prova gamo brewewanch
 
 
