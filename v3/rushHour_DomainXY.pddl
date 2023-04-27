@@ -23,8 +23,8 @@
     ; Precondition
     ; - The motorcycle has to be in ?x ?y
     ; - The position ?xDest ?y should be free (not occupied)
-    ; - If ?xDest is greater than ?x, the motorcycle will move down;
-    ; - If ?x is greater than ?xDest, the motorcycle will move up;
+    ; - If ?xDest is the next hop pf ?x, the motorcycle will move down;
+    ; - If ?x is the next hop of ?xDest, the motorcycle will move up;
     ;
     ; Effects:
     ; - The motorcycle will be at ?xDest ?y, which results to be occupied, 
@@ -57,8 +57,8 @@
     ; Precondition
     ; - The motorcycle has to be in ?x ?y
     ; - The position ?x ?yDest should be free (not occupied)
-    ; - If ?yDest is greater than ?y, the motorcycle will move right;
-    ; - If ?y is greater than ?yDest, the motorcycle will move left;
+    ; - If ?yDest is the next hop of ?y, the motorcycle will move right;
+    ; - If ?y is the next hop of ?yDest, the motorcycle will move left;
     ;
     ; Effects:
     ; - The motorcycle will be at ?x ?yDest, which results to be occupied.
