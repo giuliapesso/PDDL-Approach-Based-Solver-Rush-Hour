@@ -1,6 +1,5 @@
 (define (domain domainXY)
 
-    ;remove requirements that are not needed
     (:requirements :equality :disjunctive-preconditions :negative-preconditions :typing :conditional-effects
     )
 
@@ -18,16 +17,19 @@
     ; Motorcycle = 1 position
     ; Parameters:
     ; - ?m : the motorcycle to be moved
-    ; - ?p : the current position of the motorcycle
-    ; - ?pDest : the position where the motorcycle will be moved
+    ; - ?x ?y : the current position of the motorcycle
+    ; - ?xDest : the x coordinate where the motorcycle will be moved
     ;
     ; Precondition
-    ; - The motorcycle has to be in ?p
-    ; - The position ?pDest should be free (not occupied)
+    ; - The motorcycle has to be in ?x ?y
+    ; - The coordinate ?xDest should be free (not occupied)
+    ; - If ?xDest is greater than ?x, the motorcycle will move down;
+    ; - If ?x is greater than ?xDest, the motorcycle will move up;
     ;
-    ; Effect
-    ; - If there is an vertical connection between ?p and ?pDest, then the motorcycle will move vertically. 
-    ; - The motorcycle will be at ?pDest, which results to be occupied, and will not be art ?p, which will be not occupied.
+    ; Effects:
+    ; - The motorcycle will be at ?xDest ?y, which results to be occupied, 
+    ;   and will not be at ?x ?y, which will be not occupied.
+
     (:action move-motorcycle-ver
         :parameters (?m - motorcycle ?x - position ?y - position ?xDest - position)
         :precondition (and
@@ -42,19 +44,23 @@
             (not (occupied ?x ?y))
         )
     )
+
     ; Motorcycle = 1 position
     ; Parameters:
     ; - ?m : the motorcycle to be moved
-    ; - ?p : the current position of the motorcycle
-    ; - ?pDest : the position where the motorcycle will be moved
+    ; - ?x ?y : the current position of the motorcycle
+    ; - ?yDest : the y coordinate where the motorcycle will be moved
     ;
     ; Precondition
-    ; - The motorcycle has to be in ?p
-    ; - The position ?pDest should be free (not occupied)
+    ; - The motorcycle has to be in ?x ?y
+    ; - The coordinate ?yDest should be free (not occupied)
+    ; - If ?yDest is greater than ?y, the motorcycle will move right;
+    ; - If ?y is greater than ?yDest, the motorcycle will move left;
     ;
-    ; Effect
-    ; - If there is an horizontal connection between ?p and ?pDest, then the motorcycle will move horizontally. 
-    ; - The motorcycle will be at ?pDest, which results to be occupied, and will not be art ?p, which will be not occupied.
+    ; Effects:
+    ; - The motorcycle will be at ?x ?yDest, which results to be occupied, 
+    ;   and will not be at ?x ?y, which will be not occupied.
+
     (:action move-motorcycle-hor
         :parameters (?m - motorcycle ?x - position ?y - position ?yDest - position)
         :precondition (and
@@ -74,18 +80,20 @@
     ; Car = 2 positions
     ; Parameters:
     ; - ?c : the car to be moved
-    ; - ?p1 ?p2 : the current position of the car
-    ; - ?pDest : the position where the car will be moved
+    ; - ?x1 ?y and ?x2 ?y : the current positions of the car
+    ; - ?xDest : the x coordinate where the car will be moved
     ;
     ; Precondition
-    ; - The car has to be in ?p1 and ?p2
-    ; - ?p1 and ?p2 should be different
-    ; - The position ?pDest should be free (not occupied)
+    ; - The car has to be in ?x1 ?y and ?x2 ?y 
+    ; - ?x1 and ?x2 should be different
+    ; - The coordinate ?xDest should be free (not occupied)
+    ; - ?x2 has to be greater than ?x1
+    ; - If ?x1 is greater than ?xDest, the car will move up
+    ; - If ?xDest is greater than ?x, the car will move down
     ;
-    ; Effect
-    ; - If there is an vertical connection between ?p and ?p2, then the car will move vertically. 
-    ; - If there is an vertical connection between ?p1 and ?pDest, then the car will be at ?pDest and ?p1 and will not be at ?p2 anymore.
-    ; - If there is an vertical connection between ?p2 and ?pDest, then the car will be at ?pDest and ?p2 and will not be at ?p1 anymore.
+    ; Effects:
+    ; - If the car is moving up, it will be at ?xDest ?y and ?x1 ?y, which result to be occupied 
+    ;   and will not be at ?x2 ?y anymore
 
     (:action move-car-ver
         :parameters (?c - car ?y - position ?x1 - position ?x2 - position ?xDest - position)
@@ -94,7 +102,7 @@
             (at ?c ?x2 ?y)
             (not (occupied ?xDest ?y))
             (not (= ?x1 ?x2))
-            (next ?x2 ?x1) ;(next ?p2 ?p1))
+            (next ?x2 ?x1) 
             (or (next ?x1 ?xDest) (next ?xDest ?x2))
 
         )
