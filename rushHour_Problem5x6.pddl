@@ -3,11 +3,10 @@
     (:objects
         m1 - motorcycle
         c1 c2 red - car
-        t1 t2 - truck
+        t1 t2 t3 t4 t5 t6 t7 - truck
         p1 p2 p3 p4 p5 p6 p7 p8 p9 p10 p11 p12 p13 p14 p15 p16 p17 p18 p19 p20 p21 p22 p23 p24 p25 p26 p27 p28 p29 p30 - position
     )
-
-    (:init
+        (:init
         (horizontal p1 p2)(horizontal p2 p3)(horizontal p3 p4)(horizontal p4 p5)
         (horizontal p6 p7)(horizontal p7 p8)(horizontal p8 p9)(horizontal p9 p10)
         (horizontal p11 p12)(horizontal p12 p13)(horizontal p13 p14)(horizontal p14 p15)
@@ -29,27 +28,27 @@
         (at t2 p2)
         (at t2 p3)
 
-        ; (at red p11)
-        ; (at red p12)
+        (at red p11)
+        (at red p12)
 
-        ; (at c1 p8)
-        ; (at c1 p13)
+        (at c1 p8)
+        (at c1 p13)
 
-        ; (at c2 p10)
-        ; (at c2 p15)
+        (at c2 p10)
+        (at c2 p15)
 
-        ; (at m1 p29)
+        (at m1 p29)
 
-        ; (occupied p10)
-        ; (occupied p15) 
+        (occupied p10)
+        (occupied p15) 
         (occupied p14)
         (occupied p19)
         (occupied p24)
-        ; (occupied p11)
-        ; (occupied p12)
-        ; (occupied p8)
-        ; (occupied p13)
-        ; (occupied p29)
+        (occupied p11)
+        (occupied p12)
+        (occupied p8)
+        (occupied p13)
+        (occupied p29)
         (occupied p1)
         (occupied p2)
         (occupied p3)
@@ -57,7 +56,7 @@
 
     (:goal
         (and
-            ;(at red p15)
+            (at red p15)
             (at t1 p9)
         )
     )
