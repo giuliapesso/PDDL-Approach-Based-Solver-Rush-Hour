@@ -11,7 +11,7 @@
     (:predicates
         (at ?v - vehicle ?x - position ?y - position)
         (occupied ?x - position ?y - position)
-        (next ?next - position ?pre - position) ; Per dire che x2 viene dopo x1, (next x2 x1)
+        (next ?b - position ?a - position) ; ?b is the next hop of ?a (next hop = next coordinate)
     )
 
     ; Motorcycle = 1 position
@@ -22,7 +22,7 @@
     ;
     ; Precondition
     ; - The motorcycle has to be in ?x ?y
-    ; - The coordinate ?xDest should be free (not occupied)
+    ; - The position ?xDest ?y should be free (not occupied)
     ; - If ?xDest is greater than ?x, the motorcycle will move down;
     ; - If ?x is greater than ?xDest, the motorcycle will move up;
     ;
@@ -35,7 +35,10 @@
         :precondition (and
             (at ?m ?x ?y)
             (not (occupied ?xDest ?y))
-            (or (next ?xDest ?x) (next ?x ?xDest))
+            (or 
+                (next ?xDest ?x) ; The motorcycle will move up
+                (next ?x ?xDest) ; The motorcycle will move down
+            )
         )
         :effect (and
             (at ?m ?xDest ?y)
@@ -53,20 +56,23 @@
     ;
     ; Precondition
     ; - The motorcycle has to be in ?x ?y
-    ; - The coordinate ?yDest should be free (not occupied)
+    ; - The position ?x ?yDest should be free (not occupied)
     ; - If ?yDest is greater than ?y, the motorcycle will move right;
     ; - If ?y is greater than ?yDest, the motorcycle will move left;
     ;
     ; Effects:
-    ; - The motorcycle will be at ?x ?yDest, which results to be occupied, 
-    ;   and will not be at ?x ?y, which will be not occupied.
+    ; - The motorcycle will be at ?x ?yDest, which results to be occupied.
+    ;   It won't be at ?x ?y anymore, so it will result to be free (not occupied).
 
     (:action move-motorcycle-hor
         :parameters (?m - motorcycle ?x - position ?y - position ?yDest - position)
         :precondition (and
             (at ?m ?x ?y)
             (not (occupied ?x ?yDest))
-            (or (next ?yDest ?y) (next ?y ?yDest))
+            (or 
+                (next ?yDest ?y) ; The motorcycle will move to the left
+                (next ?y ?yDest) ; The motorcycle will move to the right
+            )
 
         )
         :effect (and
@@ -86,14 +92,16 @@
     ; Precondition
     ; - The car has to be in ?x1 ?y and ?x2 ?y 
     ; - ?x1 and ?x2 should be different
-    ; - The coordinate ?xDest should be free (not occupied)
-    ; - ?x2 has to be greater than ?x1
-    ; - If ?x1 is greater than ?xDest, the car will move up
-    ; - If ?xDest is greater than ?x, the car will move down
+    ; - The position ?xDest ?y should be free (not occupied)
+    ; - Next hop of ?x1 has to be ?x2
+    ; - If ?x1 is the next hop of ?xDest, the car will move up
+    ; - If ?xDest is the next hop of ?x2, the car will move down
     ;
     ; Effects:
-    ; - If the car is moving up, it will be at ?xDest ?y and ?x1 ?y, which result to be occupied 
-    ;   and will not be at ?x2 ?y anymore
+    ; - If the car is moving up, it will be at ?xDest ?y and ?x1 ?y, which result to be occupied. 
+    ;   It won't be at ?x2 ?y anymore, so it will result to be free (not occupied).
+    ; - If the car is moving down, it will be at ?xDest ?y and ?x2 ?y, which result to be occupied. 
+    ;   It won't be at ?x1 ?y anymore, so it will result to be free (not occupied).
 
     (:action move-car-ver
         :parameters (?c - car ?y - position ?x1 - position ?x2 - position ?xDest - position)
@@ -110,7 +118,7 @@
 
             (when
                 (and
-                    (next ?x1 ?xDest) ; Up 
+                    (next ?x1 ?xDest) ; The car will move up
                 )
                 (and
                     (at ?c ?xDest ?y)
@@ -123,7 +131,7 @@
 
             (when
                 (and
-                    (next ?xDest ?x2) ; Down
+                    (next ?xDest ?x2) ; The car will move down
                 )
                 (and
                     (at ?c ?xDest ?y)
@@ -137,21 +145,25 @@
         )
     )
     
-    ; ; Car = 2 positions
-    ; ; Parameters:
-    ; ; - ?c : the car to be moved
-    ; ; - ?p1 ?p2 : the current position of the car
-    ; ; - ?pDest : the position where the car will be moved
-    ; ;
-    ; ; Precondition
-    ; ; - The car has to be in ?p1 and ?p2
-    ; ; - ?p1 and ?p2 should be different
-    ; ; - The position ?pDest should be free (not occupied)
-    ; ;
-    ; ; Effect
-    ; ; - If there is an horizontal connection between ?p1 and ?p2, then the car will move horizontally. 
-    ; ; - If there is an horizontal connection between ?p1 and ?pDest, then the car will be at ?pDest and ?p1 and will not be at ?p2 anymore.
-    ; ; - If there is an horizontal connection between ?p2 and ?pDest, then the car will be at ?pDest and ?p2 and will not be at ?p1 anymore.
+    ; Car = 2 positions
+    ; Parameters:
+    ; - ?c : the car to be moved
+    ; - ?x ?y1 and ?x ?y2 : the current positions of the car
+    ; - ?yDest : the x coordinate where the car will be moved
+    ;
+    ; Precondition
+    ; - The car has to be in ?x ?y1 and ?x ?y2
+    ; - ?y1 and ?y2 should be different
+    ; - The position ?x ?yDest should be free (not occupied)
+    ; - Next hop of ?y1 has to be ?y2
+    ; - If ?y1 is the next hop of ?yDest, the car will move left
+    ; - If ?yDest is the next hop of ?y2, the car will move right
+    ;
+    ; Effects:
+    ; - If the car is moving left, it will be at ?x ?yDest and ?x ?y1, which result to be occupied. 
+    ;   It won't be at ?x ?y2 anymore, so it will result to be free (not occupied).
+    ; - If the car is moving right, it will be at ?x ?yDest and ?x ?y2, which result to be occupied. 
+    ;   It won't be at ?x ?y1 anymore, so it will result to be free (not occupied).
 
     (:action move-car-hor
         :parameters (?c - car ?x - position ?y1 - position ?y2 - position ?yDest - position)
@@ -166,7 +178,7 @@
         )
         :effect (and
             (when
-                (and (next ?y1 ?yDest)) ; Left
+                (and (next ?y1 ?yDest)) ; The car will move to the left
                 (and
                     (at ?c ?x ?yDest)
                     (at ?c ?x ?y1)
@@ -177,7 +189,7 @@
             )
 
             (when
-                (and (next ?yDest ?y2)) ; Right
+                (and (next ?yDest ?y2)) ; The car will move to the right
                 (and
                     (at ?c ?x ?yDest)
                     (at ?c ?x ?y2)
@@ -190,21 +202,25 @@
         )
     )
 
-    ; ; Truck = 3 positions
-    ; ; Parameters:
-    ; ; - ?t : the truck to be moved
-    ; ; - ?p1 ?p2 ?p3: the current positions of the truck
-    ; ; - ?pDest : the position where the truck will be moved
-    ; ;
-    ; ; Precondition
-    ; ; - The truck has to be in ?p1, ?p2 and ?p3
-    ; ; - ?p1, ?p2 and ?p3 should be different
-    ; ; - The position ?pDest should be free (not occupied)
-    ; ;
-    ; ; Effect
-    ; ; - If there is an vertical connection between ?p and ?p2 and between ?p2 and ?p3, then the truck will move vertically. 
-    ; ; - If there is an vertical connection between ?p1 and ?pDest, then the truck will be at ?pDest, ?p1 and ?p2 and will not be at ?p3 anymore.
-    ; ; - If there is an vertical connection between ?p3 and ?pDest, then the truck will be at ?pDest, ?p3 and ?p2 and will not be at ?p1 anymore.
+    ; Truck = 3 positions
+    ; Parameters:
+    ; - ?t : the truck to be moved
+    ; - ?x1 ?y and ?x2 ?y and ?x3 ?y: the current positions of the truck
+    ; - ?xDest : the x coordinate where the truck will be moved
+    ; 
+    ; Precondition
+    ; - The truck has to be in ?x1 ?y and ?x2 ?y and ?x3 ?y
+    ; - ?x1, ?x2 and ?x3 should be different
+    ; - The position ?xDest ?y should be free (not occupied)
+    ; - Next hop of ?x1 has to be ?x2 and next hop of ?x2 has to be ?x3
+    ; - If ?x1 is the next hop of ?xDest, the truck will move up
+    ; - If ?xDest is the next hop of ?x3, the truck will move down 
+    ; 
+    ; Effect
+    ; - If the truck is moving up, it will be at ?xDest ?y, ?x1 ?y and ?x2 ?y, which result to be occupied. 
+    ;   It won't be at ?x3 ?y anymore, so it will result to be free (not occupied).
+    ; - If the truck is moving down, it will be at ?xDest ?y, ?x3 ?y and ?x2 ?y, which result to be occupied. 
+    ;   It won't be at ?x1 ?y anymore, so it will result to be free (not occupied).
 
     (:action move-truck-ver
         :parameters (?t - truck ?y - position ?x1 - position ?x2 - position ?x3 - position ?xDest - position)
@@ -224,7 +240,7 @@
         :effect (and
 
             (when
-                (and (next ?x1 ?xDest)) ; Up
+                (and (next ?x1 ?xDest)) ; The truck will move up
 
                 (and
                     (at ?t ?xDest ?y)
@@ -238,7 +254,7 @@
 
             (when
 
-                (and (next ?xDest ?x3)) ; Down
+                (and (next ?xDest ?x3)) ; The truck will move down
 
                 (and
                     (at ?t ?xDest ?y)
@@ -253,21 +269,25 @@
         )
     )
     
-    ; ; Truck = 3 positions
-    ; ; Parameters:
-    ; ; - ?t : the truck to be moved
-    ; ; - ?p1 ?p2 ?p3: the current positions of the truck
-    ; ; - ?pDest : the position where the truck will be moved
-    ; ;
-    ; ; Precondition
-    ; ; - The truck has to be in ?p1, ?p2 and ?p3
-    ; ; - ?p1, ?p2 and ?p3 should be different
-    ; ; - The position ?pDest should be free (not occupied)
-    ; ;
-    ; ; Effect
-    ; ; - If there is an horizontal connection between ?p1 and ?p2 and between ?p2 and ?p3, then the truck will move horizontally. 
-    ; ; - If there is an horizontal connection between ?p1 and ?pDest, then the truck will be at ?pDest, ?p1 and ?p2 and will not be at ?p3 anymore.
-    ; ; - If there is an horizontal connection between ?p3 and ?pDest, then the truck will be at ?pDest, ?p3 and ?p2 and will not be at ?p1 anymore.
+    ; Truck = 3 positions
+    ; Parameters:
+    ; - ?t : the truck to be moved
+    ; - ?x ?y1 and ?x ?y2 and ?x ?y3: the current positions of the truck
+    ; - ?yDest : the x coordinate where the truck will be moved
+    ; 
+    ; Precondition
+    ; - The truck has to be in ?x ?y1 and ?x ?y2 and ?x ?y3
+    ; - ?y1, ?y2 and ?y3 should be different
+    ; - The position ?x ?yDest should be free (not occupied)
+    ; - Next hop of ?y1 has to be ?y2 and next hop of ?y2 has to be ?y3
+    ; - If ?y1 is the next hop of ?yDest, the truck will move left
+    ; - If ?yDest is the next hop of ?y3, the truck will move right 
+    ; 
+    ; Effect
+    ; - If the truck is moving left, it will be at ?x ?yDest, ?x ?y1 and ?x ?y2, which result to be occupied. 
+    ;   It won't be at ?x ?y3 anymore, so it will result to be free (not occupied).
+    ; - If the truck is moving right, it will be at ?x ?yDest, ?x ?y3 and ?x ?y2, which result to be occupied. 
+    ;   It won't be at ?x ?y1 anymore, so it will result to be free (not occupied).
 
     (:action move-truck-hor
         :parameters (?t - truck ?x - position ?y1 - position ?y2 - position ?y3 - position ?yDest - position)
@@ -285,7 +305,7 @@
         :effect (and
             (when
 
-                (and (next ?y1 ?yDest)) ; Left
+                (and (next ?y1 ?yDest)) ; The truck will move to the left
 
                 (and
                     (at ?t ?x ?yDest)
@@ -299,7 +319,7 @@
 
             (when
 
-                (and (next ?yDest ?y3)) ; Right
+                (and (next ?yDest ?y3)) ; The truck will move to the right
 
                 (and
                     (at ?t ?x ?yDest)
