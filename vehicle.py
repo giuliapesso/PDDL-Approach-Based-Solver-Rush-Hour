@@ -1,5 +1,5 @@
 class Vehicle:
-    dim : int
+    dim : int #forse non serve
     name: str
     coords = []
 
