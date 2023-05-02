@@ -1,5 +1,6 @@
 import pygame
 from griglia import GrigliaVuota
+
 pygame.init()
 
 

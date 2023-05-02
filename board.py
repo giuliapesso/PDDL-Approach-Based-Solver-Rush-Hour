@@ -1,5 +1,10 @@
-import vehicle
+from vehicle import Vehicle
 
 class Board:
-    grid = []
-        
+
+    
+    grid = [] 
+    vehicles = []
+    def __init__(self,problem):
+        vehicles = [(Vehicle(23))]
+
