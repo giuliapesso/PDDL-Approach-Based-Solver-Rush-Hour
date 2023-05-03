@@ -24,28 +24,28 @@ def drawVehicle(file):
 
     for element in findAts:
         element = element.split()
-        nome = element[0]
+        name = element[0]
 
 
         
-        if esisteIn(nome,vehicles):
-            veicolo = estraiVeicolo(nome, vehicles)
-            veicolo.addCoord(element[1],element[2])
+        if existIn(name,vehicles):
+            vehicle = findVehicle(name, vehicles)
+            vehicle.addCoord(element[1],element[2])
         else:
-            vehicles.append(Vehicle(1,nome,[[element[1],element[2]]]))
+            vehicles.append(Vehicle(1,name,[[element[1],element[2]]]))
     return vehicles
     
 
   
-def esisteIn(nome : str,vehicles : list[Vehicle]):
+def existIn(name : str,vehicles : list[Vehicle]):
     for element in vehicles:
-        if element.name==nome:
+        if element.name==name:
             return True
     return False
 
-def estraiVeicolo(nome,vehicles : list[Vehicle]):
+def findVehicle(name,vehicles : list[Vehicle]):
     for element in vehicles:
-        if element.name==nome:
+        if element.name==name:
             return element
 
 

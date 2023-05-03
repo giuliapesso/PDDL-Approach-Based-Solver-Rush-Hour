@@ -23,7 +23,7 @@ quadratoCentrale = pygame.Rect(screen.get_rect().centerx-GRID_SIZE/2,
 quadratoSchermo = screen.get_rect()
 
 
-board = Board("v3/Problems/rushHour_Problem4x4X.pddl")
+board = Board("v3/Problems/rushHour_Problem10x10XY.pddl")
 for e in board.vehicles:
     print(e)
 #quadratoVuoto = pygame.Rect()
