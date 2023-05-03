@@ -28,8 +28,8 @@ def drawVehicle(file):
 
 
         
-        if vehicle.existIn(name,vehicles):
-            vehicle = vehicle.findVehicle(name, vehicles)
+        if Vehicle.existIn(name,vehicles):
+            vehicle = Vehicle.findVehicle(name, vehicles)
             vehicle.addCoord(element[1],element[2])
         else:
             vehicles.append(Vehicle(1,name,[[element[1],element[2]]]))

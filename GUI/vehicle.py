@@ -1,3 +1,4 @@
+
 class Vehicle:
     dim : int #forse non serve
     name: str
@@ -19,13 +20,13 @@ class Vehicle:
         return txt.format(self.name,self.dim,self.coords)
     
       
-    def existIn(name : str,vehicles : list[Vehicle]):
+    def existIn(name : str,vehicles):
         for element in vehicles:
             if element.name==name:
                 return True
         return False
 
-    def findVehicle(name,vehicles : list[Vehicle]):
+    def findVehicle(name,vehicles):
         for element in vehicles:
             if element.name==name:
                 return element  
