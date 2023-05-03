@@ -26,28 +26,34 @@ def drawVeichle(file):
         element = element.split()
         nome = element[0]
 
-        if esisteIn(nome, vehicles):
+
+        
+        if esisteIn(nome,vehicles):
             veicolo = estraiVeicolo(nome, vehicles)
             veicolo.addCoord(element[1],element[2])
         else:
-            vehicles.append(Vehicle(1,nome,[element[1],element[2]]))
+            vehicles.append(Vehicle(1,nome,[[element[1],element[2]]]))
     return vehicles
     
 
   
-def esisteIn(nome : str,vehicles):
-    print("ciao")
+def esisteIn(nome : str,vehicles : list[Vehicle]):
     for element in vehicles:
-        if element[0]==nome:
+        if element.name==nome:
+            print("c")
             return True
     return False
 
-def estraiVeicolo(nome,vehicles):
+def estraiVeicolo(nome,vehicles : list[Vehicle]):
     for element in vehicles:
-        if element[0]==nome:
+        if element.name==nome:
             return element
 
 
 
-print(drawVeichle("v3/Problems/rushHour_Problem4x4X.pddl"))
+veicoli = (drawVeichle("v3/Problems/rushHour_Problem4x4X.pddl"))
+for e in veicoli:
+    print(e)
+
+
 

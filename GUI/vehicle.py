@@ -15,7 +15,8 @@ class Vehicle:
     def move(self):
         self.coords = [(0,0)]
     def __str__(self) -> str:
-        return self.name
+        txt = "nome: {}, dim, {} coordinate:{}"
+        return txt.format(self.name,self.dim,self.coords)
     
 
 
