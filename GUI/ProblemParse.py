@@ -2,7 +2,7 @@
 import re
 from vehicle import Vehicle
 
-def drawVeichle(file):
+def drawVehicle(file):
     f = open (file,"r")
     riga = f.readlines()
     f.read()
@@ -40,7 +40,6 @@ def drawVeichle(file):
 def esisteIn(nome : str,vehicles : list[Vehicle]):
     for element in vehicles:
         if element.name==nome:
-            print("c")
             return True
     return False
 
@@ -51,9 +50,7 @@ def estraiVeicolo(nome,vehicles : list[Vehicle]):
 
 
 
-veicoli = (drawVeichle("v3/Problems/rushHour_Problem4x4X.pddl"))
-for e in veicoli:
-    print(e)
+
 
 
 

@@ -1,6 +1,6 @@
 import pygame
 from griglia import GrigliaVuota
-
+from board import Board
 pygame.init()
 
 
@@ -23,6 +23,9 @@ quadratoCentrale = pygame.Rect(screen.get_rect().centerx-GRID_SIZE/2,
 quadratoSchermo = screen.get_rect()
 
 
+board = Board("v3/Problems/rushHour_Problem4x4X.pddl")
+for e in board.vehicles:
+    print(e)
 #quadratoVuoto = pygame.Rect()
 
 done = False

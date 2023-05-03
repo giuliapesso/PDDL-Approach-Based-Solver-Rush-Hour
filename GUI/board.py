@@ -1,12 +1,13 @@
 from vehicle import Vehicle
-
+import ProblemParse
 class Board:
 
     
     grid = [] 
     vehicles = []
+        
     
     def __init__(self,problem):
-        vehicles = [(Vehicle(2,"macchina1",[(1,1),(2,2)]))]
+        self.vehicles = ProblemParse.drawVehicle(problem)
 
     
