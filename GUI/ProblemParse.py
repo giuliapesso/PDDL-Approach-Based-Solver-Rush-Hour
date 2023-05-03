@@ -1,12 +1,29 @@
 
 import re
 from vehicle import Vehicle
-
-def drawVehicle(file):
-    f = open (file,"r")
+def leggiFile(str):
+    f = open (str,"r")
     riga = f.readlines()
     f.read()
-    print(f)
+    return f,riga
+
+def findBoardDim(file):
+    f,riga =leggiFile(file)
+    numbers = []
+    for r in riga :
+        found = re.findall("[\d|\w| ]+- position",r)
+        if found:
+            break
+    f.close()
+
+    strNumbers = (re.sub("x|y|-|position","",found[0]).split())
+    for e in strNumbers:
+        numbers.append(int(e))
+    return max(numbers)
+
+
+def drawVehicle(file):
+    f,riga = leggiFile(file)
     vehicles = []
     findAts = []
     for r in riga : 
@@ -34,6 +51,7 @@ def drawVehicle(file):
         else:
             vehicles.append(Vehicle(1,name,[[element[1],element[2]]]))
     return vehicles
+
     
 
 

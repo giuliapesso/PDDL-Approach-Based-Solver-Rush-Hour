@@ -1,6 +1,7 @@
 import pygame
 from griglia import GrigliaVuota
 from board import Board
+import ProblemParse
 pygame.init()
 
 
@@ -8,8 +9,8 @@ SCREEN_WIDTH= 800
 SCREEN_HEIGHT = 600
 
 GRID_SIZE = 400
-N_GRID = 3
-
+problem = "v3/Problems/rushHour_Problem4x4X.pddl"
+N_GRID = ProblemParse.findBoardDim(problem)
 
 RED = (255,0,0)
 WHITE = (255,255,255)
@@ -23,7 +24,7 @@ quadratoCentrale = pygame.Rect(screen.get_rect().centerx-GRID_SIZE/2,
 quadratoSchermo = screen.get_rect()
 
 
-board = Board("v3/Problems/rushHour_Problem10x10XY.pddl")
+board = Board(problem)
 for e in board.vehicles:
     print(e)
 #quadratoVuoto = pygame.Rect()
