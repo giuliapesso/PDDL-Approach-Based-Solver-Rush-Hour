@@ -28,25 +28,15 @@ def drawVehicle(file):
 
 
         
-        if existIn(name,vehicles):
-            vehicle = findVehicle(name, vehicles)
+        if vehicle.existIn(name,vehicles):
+            vehicle = vehicle.findVehicle(name, vehicles)
             vehicle.addCoord(element[1],element[2])
         else:
             vehicles.append(Vehicle(1,name,[[element[1],element[2]]]))
     return vehicles
     
 
-  
-def existIn(name : str,vehicles : list[Vehicle]):
-    for element in vehicles:
-        if element.name==name:
-            return True
-    return False
 
-def findVehicle(name,vehicles : list[Vehicle]):
-    for element in vehicles:
-        if element.name==name:
-            return element
 
 
 

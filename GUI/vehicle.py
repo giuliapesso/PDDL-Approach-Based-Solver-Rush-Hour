@@ -18,7 +18,17 @@ class Vehicle:
         txt = "nome: {}, dim, {} coordinate:{}"
         return txt.format(self.name,self.dim,self.coords)
     
+      
+    def existIn(name : str,vehicles : list[Vehicle]):
+        for element in vehicles:
+            if element.name==name:
+                return True
+        return False
 
+    def findVehicle(name,vehicles : list[Vehicle]):
+        for element in vehicles:
+            if element.name==name:
+                return element  
 
 
 

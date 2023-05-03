@@ -5,6 +5,9 @@ class Board:
     
     grid = [] 
     vehicles = []
+
+
+    
         
     
     def __init__(self,problem):
