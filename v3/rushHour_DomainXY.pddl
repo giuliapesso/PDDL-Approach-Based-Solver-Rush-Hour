@@ -4,7 +4,7 @@
     )
 
     (:types
-        vehicle position - object
+        vehicle position direction - object
         car truck motorcycle - vehicle
     )
 

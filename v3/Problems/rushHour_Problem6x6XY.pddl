@@ -1,11 +1,11 @@
-(define (problem problem6x6-1) (:domain domainXY)
+(define (problem problem6x6) (:domain domainXY)
 
     ; -------------------------
     ; |   |   |   |   |   | t |
     ; |   |   |   |   | t | r |
-    ; |   |   | r | d | r | 3 |
+    ; |   |   | re| d | r | 3 |
     ; | c | 1 | t |   | 2 |   |
-    ; |   | c | r | m | c | 3 |
+    ; |   | c | r | m1| c | 3 |
     ; |   | 2 | 1 |   |   |   |
     ; -------------------------
 
@@ -36,13 +36,13 @@
         
         (at c2 x5 y2)
         (at c2 x6 y2)
-        
-        (at red x3 y3)
-        (at red x3 y4)
-        
+
         (at c3 x5 y5)
         (at c3 x5 y6)
         
+        (at red x3 y3)
+        (at red x3 y4)
+
         (at t1 x4 y3)
         (at t1 x5 y3)
         (at t1 x6 y3)
