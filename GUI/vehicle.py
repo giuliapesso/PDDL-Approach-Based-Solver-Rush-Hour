@@ -10,11 +10,12 @@ class Vehicle:
 
     def addCoord(self,x : int , y : int):
         self.coords.append([x,y])
-        self.dim = self.dim+1;
+        self.dim = self.dim+1
 
     def move(self):
         self.coords = [(0,0)]
-
+    def __str__(self) -> str:
+        return self.name
     
 
 
