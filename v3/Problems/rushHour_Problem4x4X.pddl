@@ -42,7 +42,7 @@
     )
 
     (:goal
-        (at c1 x4 y4)
+        (at  c1x4 y4)
     )
 
 )

@@ -35,7 +35,7 @@ for e in board.vehicles:
 
 done = False
 while not done:
-
+    screen.fill(WHITE)
     clock.tick(2)
     #print(clock.get_fps())
     #pygame.draw.rect(screen,RED,quadrato,2)
@@ -51,6 +51,10 @@ while not done:
             done = True
         if event.type == pygame.MOUSEBUTTONDOWN:
             print(board.getCoord(pygame.mouse.get_pos()))
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                #print("up")
+                board.vehicles[-2].move([7,board.vehicles[-2].coords[0][1]-1])
             
 
 

@@ -52,4 +52,5 @@ class Board:
     def drawRectFromCoord(self,coords : tuple[int,int], color):
         pygame.draw.rect(self.screen,color, self.getRectFromCoord(coords))
 
+
     
