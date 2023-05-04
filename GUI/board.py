@@ -10,17 +10,17 @@ class Board:
     centerRect : pygame.Rect
 
     #in pixel
-    gridSize : int
+    cellSize : int
     gridDim : int
 
 
         
     
-    def __init__(self,problem,screen,centerRect,gridSize,gridDim):
+    def __init__(self,problem,screen,centerRect,cellSize,gridDim):
         self.vehicles = ProblemParse.drawVehicle(problem)
         self.screen = screen
         self.centerRect = centerRect
-        self.gridSize=gridSize
+        self.cellSize=cellSize
         self.gridDim = gridDim
 
     def drawVehicles(self):
@@ -37,8 +37,15 @@ class Board:
         if (xPixel<0 or yPixel):
             None
             #raise Exception("stai clickando fuori dalla griglia")
-        return (int(xPixel//self.gridSize),int(yPixel//self.gridSize))
+        return (int(xPixel//self.cellSize),int(yPixel//self.cellSize))
     
+    #ricava cella della griglia in base alla coordinata
+    def getRectFromCoord(self, coords : tuple[int,int]) -> pygame.Rect:
+        left = self.centerRect.left + coords[0]*self.cellSize
+        top = self.centerRect.top + coords[1]*self.cellSize
+        return pygame.Rect(left,top,self.cellSize,self.cellSize)
     
-    
+
+    #def drawRectFromCoord(coords : tuple[int,int]):
+
     
