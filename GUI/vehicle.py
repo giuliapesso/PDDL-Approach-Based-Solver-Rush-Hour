@@ -1,8 +1,13 @@
+#serve solo per usare il type Vehicle dentro la definizione della stessa
+from __future__ import annotations
+
 
 class Vehicle:
     dim : int #forse non serve
     name: str
     coords = [[int,int]]
+
+
 
     def __init__(self,dim,name,coords) -> None:
         self.dim = dim
@@ -30,10 +35,10 @@ class Vehicle:
                 return True
         return False
 
-    def findVehicle(name,vehicles):
+    def findVehicle(name,vehicles : list[Vehicle]) -> Vehicle:
         for element in vehicles:
             if element.name==name:
-                return element  
+                return element
 
 
 
