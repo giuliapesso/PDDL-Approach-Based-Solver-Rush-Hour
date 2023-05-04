@@ -28,7 +28,7 @@ def drawVehicle(file):
     findAts = []
     for r in riga : 
         # permette di non leggere la parte del goal
-        if r.__contains__("goal"):
+        if "goal" in r:
             break
         # si usano le espressioni regoli per ricavare le stringhe che contengono at nel problem pddl
         found = re.findall("at[\d|\w| ]+",r)
