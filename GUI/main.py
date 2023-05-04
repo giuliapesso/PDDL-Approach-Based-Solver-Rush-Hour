@@ -8,9 +8,13 @@ pygame.init()
 SCREEN_WIDTH= 800
 SCREEN_HEIGHT = 600
 
+
 GRID_SIZE = 400
-problem = "v3/Problems/rushHour_Problem4x4X.pddl"
+
+problem = "v3/Problems/rushHour_Problem6X6XY.pddl"
 N_GRID = ProblemParse.findBoardDim(problem)
+
+CELL_SIZE = GRID_SIZE/N_GRID
 
 RED = (255,0,0)
 WHITE = (255,255,255)
@@ -24,14 +28,14 @@ quadratoCentrale = pygame.Rect(screen.get_rect().centerx-GRID_SIZE/2,
 quadratoSchermo = screen.get_rect()
 
 
-board = Board(problem,screen,quadratoCentrale)
+board = Board(problem,screen,quadratoCentrale,CELL_SIZE,N_GRID)
 for e in board.vehicles:
     print(e)
 #quadratoVuoto = pygame.Rect()
 
 done = False
 while not done:
-    
+
     clock.tick(2)
     #print(clock.get_fps())
     #pygame.draw.rect(screen,RED,quadrato,2)
@@ -45,6 +49,9 @@ while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            print(board.getCoord(pygame.mouse.get_pos()))
+            
 
 
 
