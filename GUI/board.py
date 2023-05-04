@@ -27,8 +27,10 @@ class Board:
     def drawVehicles(self):
 
         for e in self.vehicles:
-            for coords in e.coords:
-                self.drawRectFromCoord(coords)
+            self.drawVehicle(e)
+    def drawVehicle(self, vehicle : Vehicle):
+        for coords in vehicle.coords:
+            self.drawRectFromCoord(coords,vehicle.color)
 
     # ritorna coordinate x y della griglia in base alle coordinate in pixel
     def getCoord(self,mousePos : tuple[int,int]) -> tuple[int,int]:
@@ -47,7 +49,7 @@ class Board:
         return pygame.Rect(left,top,self.cellSize,self.cellSize)
     
 
-    def drawRectFromCoord(self,coords : tuple[int,int]):
-        pygame.draw.rect(self.screen,(0,255,000), self.getRectFromCoord(coords))
+    def drawRectFromCoord(self,coords : tuple[int,int], color):
+        pygame.draw.rect(self.screen,color, self.getRectFromCoord(coords))
 
     

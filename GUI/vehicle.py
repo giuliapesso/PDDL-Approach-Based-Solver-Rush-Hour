@@ -1,18 +1,23 @@
 #serve solo per usare il type Vehicle dentro la definizione della stessa
 from __future__ import annotations
-
+import numpy as np
 
 class Vehicle:
     dim : int #forse non serve
     name: str
     coords = [[int,int]]
-
+    color = tuple[int,int,int]
 
 
     def __init__(self,dim,name,coords) -> None:
         self.dim = dim
         self.name = name
-        self.coords = coords
+        self.coords = coords 
+        if name == "red":
+            self.color = (255,0,0)
+        else:
+            #genera colore rgb con numpy
+            self.color = list (np.random.choice(range(255),size=3))
 
     def addCoord(self,x : int , y : int):
         self.coords.append([x,y])
