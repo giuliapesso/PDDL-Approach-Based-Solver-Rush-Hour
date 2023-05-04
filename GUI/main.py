@@ -24,13 +24,14 @@ quadratoCentrale = pygame.Rect(screen.get_rect().centerx-GRID_SIZE/2,
 quadratoSchermo = screen.get_rect()
 
 
-board = Board(problem)
+board = Board(problem,screen,quadratoCentrale)
 for e in board.vehicles:
     print(e)
 #quadratoVuoto = pygame.Rect()
 
 done = False
 while not done:
+    
     clock.tick(2)
     #print(clock.get_fps())
     #pygame.draw.rect(screen,RED,quadrato,2)
@@ -38,6 +39,7 @@ while not done:
     
     #print(GrigliaVuota(quadratoCentrale,2).cellSize)
     GrigliaVuota(quadratoCentrale,N_GRID).drawGriglia(screen)
+    board.drawVehicles()
 
     #quadratoCentrale.left=quadratoCentrale.left+2
     for event in pygame.event.get():
