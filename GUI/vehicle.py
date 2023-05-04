@@ -13,8 +13,12 @@ class Vehicle:
         self.coords.append([x,y])
         self.dim = self.dim+1
 
+
     def move(self):
+
         self.coords = [(0,0)]
+
+
     def __str__(self) -> str:
         txt = "nome: {}, dim, {} coordinate:{}"
         return txt.format(self.name,self.dim,self.coords)
