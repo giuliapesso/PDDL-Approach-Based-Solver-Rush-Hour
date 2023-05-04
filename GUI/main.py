@@ -11,9 +11,9 @@ SCREEN_HEIGHT = 600
 
 GRID_SIZE = 400
 
-problem = "v3/Problems/rushHour_Problem6X6XY.pddl"
+problem = "v3/Problems/rushHour_Problem4X4X.pddl"
 N_GRID = ProblemParse.findBoardDim(problem)
-
+    
 CELL_SIZE = GRID_SIZE/N_GRID
 
 RED = (255,0,0)

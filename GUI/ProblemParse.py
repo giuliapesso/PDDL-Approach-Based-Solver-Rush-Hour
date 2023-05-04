@@ -41,13 +41,20 @@ def drawVehicle(file):
         element = element.split()
         name = element[0]
 
+        #in .pddl i mie at (x e y) indicano riga e colonna della matrice
+        #quindi qui y è riga-1 e x colonna-1
+        riga = int(element[1])
+        colonna= int(element[2])
+
+        x = colonna-1
+        y = riga-1
 
         
         if Vehicle.existIn(name,vehicles):
             vehicle = Vehicle.findVehicle(name, vehicles)
-            vehicle.addCoord(element[1],element[2])
+            vehicle.addCoord(x,y)
         else:
-            vehicles.append(Vehicle(1,name,[[element[1],element[2]]]))
+            vehicles.append(Vehicle(1,name,[[x,y]]))
     return vehicles
 
     

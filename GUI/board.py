@@ -5,11 +5,12 @@ class Board:
 
     
     grid = [] 
-    vehicles = []
+    vehicles = list[Vehicle]
     screen : pygame.Surface
     centerRect : pygame.Rect
 
     #in pixel
+
     cellSize : int
     gridDim : int
 
@@ -26,8 +27,8 @@ class Board:
     def drawVehicles(self):
 
         for e in self.vehicles:
-            
-            None
+            for coords in e.coords:
+                self.drawRectFromCoord(coords)
 
     # ritorna coordinate x y della griglia in base alle coordinate in pixel
     def getCoord(self,mousePos : tuple[int,int]) -> tuple[int,int]:
@@ -46,6 +47,7 @@ class Board:
         return pygame.Rect(left,top,self.cellSize,self.cellSize)
     
 
-    #def drawRectFromCoord(coords : tuple[int,int]):
+    def drawRectFromCoord(self,coords : tuple[int,int]):
+        pygame.draw.rect(self.screen,(0,255,000), self.getRectFromCoord(coords))
 
     
