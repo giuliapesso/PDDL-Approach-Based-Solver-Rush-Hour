@@ -9,7 +9,7 @@
 
     (:objects
         m1 - motorcycle
-        c1 - car
+        red - car
         t1 - truck
         x1 x2 x3 x4 y1 y2 y3 y4  - position
     )
@@ -17,8 +17,8 @@
     (:init
         (at m1 x1 y1)
 
-        (at c1 x4 y1)
-        (at c1 x4 y2)
+        (at red x4 y1)
+        (at red x4 y2)
 
         (at t1 x2 y3)
         (at t1 x3 y3)
@@ -42,7 +42,7 @@
     )
 
     (:goal
-        (at  c1 x4 y4)
+        (at  red x4 y4)
     )
 
 )

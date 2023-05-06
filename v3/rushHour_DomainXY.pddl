@@ -31,7 +31,7 @@
     ;   and will not be at ?x ?y, which will be not occupied.
 
     (:action move-motorcycle-ver
-        :parameters (?m - motorcycle ?x - position ?y - position ?xDest - position)
+        :parameters (?m - motorcycle ?y - position ?x - position ?xDest - position)
         :precondition (and
             (at ?m ?x ?y)
             (not (occupied ?xDest ?y))

@@ -2,8 +2,8 @@ import pygame
 from griglia import GrigliaVuota
 from board import Board
 import ProblemParse
+import PlanParse
 pygame.init()
-
 
 SCREEN_WIDTH= 800
 SCREEN_HEIGHT = 600
@@ -11,7 +11,7 @@ SCREEN_HEIGHT = 600
 
 GRID_SIZE = 400
 
-problem = "v3/Problems/rushHour_Problem10X10XY.pddl"
+problem = "v3/Problems/rushHour_Problem6x6XY.pddl"
 N_GRID = ProblemParse.findBoardDim(problem)
 
 CELL_SIZE = GRID_SIZE/N_GRID
@@ -29,11 +29,14 @@ quadratoSchermo = screen.get_rect()
 
 
 board = Board(problem,screen,quadratoCentrale,CELL_SIZE,N_GRID)
+moves = PlanParse.extractPlan(problem)
+print(moves)
 for e in board.vehicles:
     print(e)
 #quadratoVuoto = pygame.Rect()
 
 done = False
+moveApplicate=0 
 while not done:
     screen.fill(WHITE)
     clock.tick(2)
@@ -53,12 +56,16 @@ while not done:
             print(board.getCoord(pygame.mouse.get_pos()))
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
+                #
+                if (moveApplicate < len(moves)):
+                    board.applica(moves[moveApplicate])
+                
                 #print("up")
-                board.vehicles[-2].move([7,board.vehicles[-2].coords[0][1]-1])
+                #board.vehicles[1].move([board.vehicles[1].coords[0][0]-1,3])
+                #board.vehicles[1].move([board.vehicles[1].coords[1][0]-1,3])
+
+                moveApplicate = moveApplicate+1
             
-
-
-
-    pygame.display.update()
+    pygame.display.update() 
 
 pygame.quit()

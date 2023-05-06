@@ -57,6 +57,7 @@ class Vehicle:
         for element in vehicles:
             if element.name==name:
                 return element
+            
     def __str__(self) -> str:
         txt = "nome: {}, dim, {} coordinate:{}"
         return txt.format(self.name,self.dim,self.coords)

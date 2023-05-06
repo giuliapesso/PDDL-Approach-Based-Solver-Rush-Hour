@@ -13,9 +13,6 @@ class Board:
 
     cellSize : int
     gridDim : int
-
-
-        
     
     def __init__(self,problem,screen,centerRect,cellSize,gridDim):
         self.vehicles = ProblemParse.drawVehicle(problem)
@@ -51,6 +48,15 @@ class Board:
 
     def drawRectFromCoord(self,coords : tuple[int,int], color):
         pygame.draw.rect(self.screen,color, self.getRectFromCoord(coords))
+
+    def applica(self,move):
+        # [veicolo, xDest, yDest]
+        # Estrai veicolo -> findVehicle(move[0])
+        # 
+        vehicle = Vehicle.findVehicle(move[0],self.vehicles)
+        vehicle.move([move[1],move[2]])
+  
+        
 
 
     
