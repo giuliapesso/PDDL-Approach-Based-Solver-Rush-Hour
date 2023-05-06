@@ -8,6 +8,8 @@ def solve(domain="./v3/rushHour_DomainXY.pddl", problem ="./v3/Problems/rushHour
                                 verify=False, json=data).json()
 
         with open("plan.ipc", 'w') as f:
-                f.write('\n'.join([act['name'] for act in resp['result']['plan']]))
+
+                try: f.write('\n'.join([act['name'] for act in resp['result']['plan']]))
+                except: print("no sol")
         
         return f

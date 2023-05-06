@@ -55,14 +55,14 @@ class Board:
         vehicle = Vehicle.findVehicle(move[0],self.vehicles)
         vehicle.move([move[1],move[2]])
   
-    def mostraFinito(self):
+    def mostraFinito(self, txt):
         font = pygame.font.Font('freesansbold.ttf', 80)
         green = (0,255,0)
         black = (0,0,0)
         left = self.centerRect.left
         top = self.centerRect.top+self.gridDim*self.cellSize
         centro = pygame.Rect(left,top,200,200)
-        self.screen.blit(font.render('You win!', True, green, black), centro)
-
+        self.screen.blit(font.render(txt, True, green, black), centro)
+    
 
     

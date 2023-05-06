@@ -29,6 +29,8 @@ quadratoSchermo = screen.get_rect()
 
 board = Board(problem,screen,quadratoCentrale,CELL_SIZE,N_GRID)
 moves = PlanParse.extractPlan(problem)
+
+
 print(moves)
 for e in board.vehicles:
     print(e)
@@ -38,19 +40,23 @@ done = False
 moveApplicate=0 
 finito = False
 while not done:
+
     screen.fill(WHITE)
+
     clock.tick(2)
     #print(clock.get_fps())
     #pygame.draw.rect(screen,RED,quadrato,2)
     #pygame.draw.rect(screen,RED,quadratoCentrale,2)
     
     #print(GrigliaVuota(quadratoCentrale,2).cellSize)
+    if (not moves):
+        board.mostraFinito("Unsolvable")
     GrigliaVuota(quadratoCentrale,N_GRID).drawGriglia(screen)
     board.drawVehicles()
 
     #quadratoCentrale.left=quadratoCentrale.left+2
     if finito: 
-        board.mostraFinito()
+        board.mostraFinito("You win!")
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
@@ -59,10 +65,12 @@ while not done:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
                 #
+                
                 if (moveApplicate < len(moves)):
                     board.applica(moves[moveApplicate])
                 else :
-                    finito=True
+                    if (moves):
+                        finito=True
                  
                 #print("up")
                 #board.vehicles[1].move([board.vehicles[1].coords[0][0]-1,3])
