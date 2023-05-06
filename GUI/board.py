@@ -3,7 +3,6 @@ import ProblemParse
 import pygame
 class Board:
 
-    
     grid = [] 
     vehicles = list[Vehicle]
     screen : pygame.Surface
@@ -56,7 +55,14 @@ class Board:
         vehicle = Vehicle.findVehicle(move[0],self.vehicles)
         vehicle.move([move[1],move[2]])
   
-        
+    def mostraFinito(self):
+        font = pygame.font.Font('freesansbold.ttf', 80)
+        green = (0,255,0)
+        black = (0,0,0)
+        left = self.centerRect.left
+        top = self.centerRect.top+self.gridDim*self.cellSize
+        centro = pygame.Rect(left,top,200,200)
+        self.screen.blit(font.render('You win!', True, green, black), centro)
 
 
     

@@ -8,10 +8,9 @@ pygame.init()
 SCREEN_WIDTH= 800
 SCREEN_HEIGHT = 600
 
+GRID_SIZE = 200
 
-GRID_SIZE = 400
-
-problem = "v3/Problems/rushHour_Problem6x6XY.pddl"
+problem = "v3/Problems/rushHour_Problem4x4X.pddl"
 N_GRID = ProblemParse.findBoardDim(problem)
 
 CELL_SIZE = GRID_SIZE/N_GRID
@@ -37,6 +36,7 @@ for e in board.vehicles:
 
 done = False
 moveApplicate=0 
+finito = False
 while not done:
     screen.fill(WHITE)
     clock.tick(2)
@@ -49,6 +49,8 @@ while not done:
     board.drawVehicles()
 
     #quadratoCentrale.left=quadratoCentrale.left+2
+    if finito: 
+        board.mostraFinito()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
@@ -59,7 +61,9 @@ while not done:
                 #
                 if (moveApplicate < len(moves)):
                     board.applica(moves[moveApplicate])
-                
+                else :
+                    finito=True
+                 
                 #print("up")
                 #board.vehicles[1].move([board.vehicles[1].coords[0][0]-1,3])
                 #board.vehicles[1].move([board.vehicles[1].coords[1][0]-1,3])
