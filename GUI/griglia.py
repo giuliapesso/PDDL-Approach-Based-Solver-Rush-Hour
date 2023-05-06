@@ -1,8 +1,8 @@
 
 import pygame
 
-COLORE_GRIGLIA = (255,0,0)
-SPESSORE_GRIGLIA = 1
+COLORE_GRIGLIA = (0,0,0)
+SPESSORE_GRIGLIA = 2
 class GrigliaVuota():
 
     outerRect: pygame.Rect
@@ -21,9 +21,6 @@ class GrigliaVuota():
 
 
     def drawGriglia(self, screen):
-
-
-
         cella = pygame.Rect(self.outerRect.left,self.outerRect.top
                             ,self.cellSize,self.cellSize)
         

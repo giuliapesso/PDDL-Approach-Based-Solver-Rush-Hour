@@ -1,7 +1,7 @@
 
 import solverScript
-
 import re
+
 def extractPlan(problem):
     file = solverScript.solve(problem=problem)
     
@@ -17,7 +17,6 @@ def extractPlan(problem):
     #print(movesPddl)
 
     for move in movesPddl:
-
         if str(move[1]).startswith('x'):
             xDest = int(re.sub("x|y","",move[2]))-1
             yDest = int(re.sub("x|y","",move[1]))-1
