@@ -9,7 +9,6 @@ class Vehicle:
     coords = list[tuple[int,int]]
     color = tuple[int,int,int]
 
-
     def __init__(self,dim,name,coords) -> None:
         self.dim = dim
         self.name = name
@@ -24,29 +23,22 @@ class Vehicle:
         self.coords.append([x,y])
         self.dim = self.dim+1
 
-
-   
     def move(self, coordDest):
         self.coords.remove(self.findFarthestFrom(coordDest))
         self.coords.append(coordDest)
-
         print(self.coords)
+
     #eh faccio cose un po strane per ricavare il punto piu lontano
     def findFarthestFrom(self,  coordFrom : tuple[int,int]) -> tuple[int,int]:
         dict = {}
         for coord in self.coords:
             dict[self.findDistance(coord,coordFrom)]=coord
-        
-        
         return dict[(max(dict.keys()))]
 
-
-     #TROVO la distanza tra due coordinate
+     #Trovo la distanza tra due coordinate
     def findDistance(self,coord1:tuple[int,int], coord2:tuple[int,int]):
         return math.sqrt((coord1[0] - coord2[0])**2 + (coord1[1] - coord2[1])**2)
             
-
-      
     def existIn(name : str,vehicles):
         for element in vehicles:
             if element.name==name:

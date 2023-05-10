@@ -9,7 +9,6 @@ class Board:
     centerRect : pygame.Rect
 
     #in pixel
-
     cellSize : int
     gridDim : int
     
@@ -21,9 +20,9 @@ class Board:
         self.gridDim = gridDim
 
     def drawVehicles(self):
-
         for e in self.vehicles:
             self.drawVehicle(e)
+
     def drawVehicle(self, vehicle : Vehicle):
         for coords in vehicle.coords:
             self.drawRectFromCoord(coords,vehicle.color)
@@ -44,14 +43,12 @@ class Board:
         top = self.centerRect.top + coords[1]*self.cellSize
         return pygame.Rect(left,top,self.cellSize,self.cellSize)
     
-
     def drawRectFromCoord(self,coords : tuple[int,int], color):
         pygame.draw.rect(self.screen,color, self.getRectFromCoord(coords))
 
     def applica(self,move):
         # [veicolo, xDest, yDest]
         # Estrai veicolo -> findVehicle(move[0])
-        # 
         vehicle = Vehicle.findVehicle(move[0],self.vehicles)
         vehicle.move([move[1],move[2]])
   

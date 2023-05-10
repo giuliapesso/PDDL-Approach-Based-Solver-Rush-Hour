@@ -20,6 +20,7 @@ def findBoardDim(file):
     for e in strNumbers:
         numbers.append(int(e))
     return max(numbers)
+
 def drawVehicle(file):
     f,riga = leggiFile(file)
     vehicles = []
@@ -49,7 +50,6 @@ def drawVehicle(file):
         x = colonna-1
         y = riga-1
 
-        
         if Vehicle.existIn(name,vehicles):
             vehicle = Vehicle.findVehicle(name, vehicles)
             vehicle.addCoord(x,y)
