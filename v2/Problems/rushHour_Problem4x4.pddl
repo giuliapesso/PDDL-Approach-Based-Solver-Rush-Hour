@@ -1,4 +1,10 @@
 (define (problem problem_name) (:domain test)
+
+; |1: m1  |2:     |3:      |4:  c X|
+; |5:  t  |6:  r  |7:  1   |8:  1  |
+; |9:     |10:    |11:     |12:    |
+; |13:    |14:    |15:     |16:    |
+
 (:objects 
     m1 - motorcycle
     c1 - car
@@ -34,11 +40,7 @@
 )
 
 (:goal (and
-    ;(at c1 p4)
-    ;(at m1 p13)
-    (at t1 p8)
+    (at c1 p4)
 ))
 
-;un-comment the following line if metric is needed
-;(:metric minimize (???))
 )
