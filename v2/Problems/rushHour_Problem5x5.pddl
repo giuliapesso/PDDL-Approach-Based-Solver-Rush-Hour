@@ -1,4 +1,12 @@
 (define (problem problem_name) (:domain test)
+
+; |1:    |2:     |3:      |4:  c   |5:        |
+; |6: t  |7: r   |8:   1  |9:  1   |10:  m1 X |
+; |11:   |12:    |13:  c  |14:  c  |15:  2    |
+; |16:   |17:    |18:  3  |19:     |20:       |
+; |21:   |22:    |23:     |24:     |25:       |
+
+
 (:objects 
     m1 - motorcycle
     c1 c2 c3 - car
