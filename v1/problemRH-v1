@@ -1,7 +1,15 @@
 (define (problem problemName) (:domain domainName)
 
+    ; ________________________________
+    ; |1:     |2:     |3:     |4:    | 
+    ; |5: re  |6:  d  |7:  c  |8:    | 
+    ; |9:     |10:    |11: 1  |12:   | 
+    ; |13:    |14:    |15:    |16:   | 
+    ; ________________________________
+    
+       
     (:objects
-        rossa blu - car
+        red c1 - car
         p1 p2 p3 p4 p5 p6 p7 p8 p9 p10 p11 p12 p13 p14 p15 p16 - position
     )
 
@@ -31,11 +39,11 @@
         (vertical p8 p12)
         (vertical p12 p16)
         
-        (at rossa p5)
-        (at rossa p6)
+        (at red p5)
+        (at red p6)
         
-        (at blu p7)
-        (at blu p11)
+        (at c1 p7)
+        (at c1 p11)
         
         (occupied p5)
         (occupied p6)
@@ -44,7 +52,7 @@
     )
     
     (:goal
-        (and (at rossa p8))
+        (and (at red p8))
     )
     
 )
