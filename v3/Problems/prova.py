@@ -2,12 +2,12 @@ import re
 
 # genera i next con le y
 txt = "(next y{} y{})"
-for i in range(15):
+for i in range(20):
     print(txt.format(i+1,i))
 
 # genera i next con le x
 txt = "(next x{} x{})"
-for i in range(15):
+for i in range(20):
     print(txt.format(i+1,i))
 
 #genera gli occupied dagli at
@@ -17,7 +17,7 @@ def leggiFile(str):
     f.read()
     return riga 
 
-for f in leggiFile("./rushHour_Problem15x15XY.pddl") :
+for f in leggiFile("./rushHour_Problem20x20XY.pddl") :
     if "goal" in f:
             break
     found = re.findall("at[\d|\w| ]+",f)

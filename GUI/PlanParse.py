@@ -38,7 +38,7 @@ def extractPlan(problem):
         moves.append([move[0],xDest,yDest])
     return moves
 
- # (move [xDest, yDest]) yDest = xEstratta, xDest = ultimaCoord
+# (move [xDest, yDest]) yDest = xEstratta, xDest = ultimaCoord
 # - Se preceduto da y -> si muove ver -> la prima coord (x = col) resta uguale
 
 

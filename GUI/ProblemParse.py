@@ -5,7 +5,7 @@ from vehicle import Vehicle
 # Parameters: str -> name of the file to be read
 # Return: f -> the opened file, riga -> the file's lines
 def leggiFile(str):
-    f = open (str,"r")
+    f = open(str,"r")
     riga = f.readlines()
     f.read()
     return f,riga
@@ -17,7 +17,7 @@ def leggiFile(str):
 # Return: the maximum of the found numbers
 
 def findBoardDim(file):
-    f,riga =leggiFile(file)
+    f,riga = leggiFile(file)
     numbers = []
     for r in riga :
         found = re.findall("[\d|\w| ]+- position",r)
