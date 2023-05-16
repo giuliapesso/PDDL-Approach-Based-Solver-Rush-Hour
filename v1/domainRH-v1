@@ -1,18 +1,39 @@
 (define (domain domainName)
 
+    ;   Car = a vehicle that occupies two cells of the grid
+    ;   Position = a cell of the grid
+    
     (:types
         car
         position
     )
-
+    
     (:predicates
-        (at ?x - car ?p - position)
-        (occupied ?p - position)
-        (horizontal ?p1 - position ?p2 - position)
-        (vertical ?p1 - position ?p2 - position)
-        (visited ?c - car ?p - position)
+        (at ?x - car ?p - position)                 ; The car ?x is at the position ?p 
+        (occupied ?p - position)                    ; The cell ?p is occupied
+        (horizontal ?p1 - position ?p2 - position)  ; There is an horizontal path between ?p1 and ?p2 
+        (vertical ?p1 - position ?p2 - position)    ; There is a vertical path between ?p1 and ?p2 
+        (visited ?c - car ?p - position)            ; The car ?c has been in position ?p
     )
 
+    ; Car = 2 positions
+    ; Parameters:
+    ; - ?m : the car to be moved
+    ; - ?p1 ?p2 : the current positions of the car
+    ; - ?pDest : the cell ?pDest where the car will be moved
+    ;
+    ; Precondition
+    ; - The car has to be in ?p1 and ?p2
+    ; - The position ?pDest should be free (not occupied)
+    ; - There has to be an horizontal path between ?p1 and ?p2
+    ; - There has to be an horizontal path either between ?p1 and ?pDest or between ?p2 and ?pDest
+    ;
+    ; Effects:
+    ; - If there is an horizontal path between ?p1 and ?pDest, it means that the car will be moved towards ?pDest and that 
+    ;   ?pDest and ?p1 will be occupied by the car; ?p2 will be free (not occupied)
+    ; - If there is an horizontal path between ?p2 and ?pDest, it means that the car will be moved towards ?pDest and that 
+    ;   ?pDest and ?p2 will be occupied by the car; ?p1 will be free (not occupied)
+    
     (:action move-horizontal
         :parameters (?m - car ?p1 - position ?p2 - position ?pDest - position)
         :precondition 
@@ -46,6 +67,24 @@
         )
     )
 
+    ; Car = 2 positions
+    ; Parameters:
+    ; - ?m : the car to be moved
+    ; - ?p1 ?p2 : the current positions of the car
+    ; - ?pDest : the cell ?pDest where the car will be moved
+    ;
+    ; Precondition
+    ; - The car has to be in ?p1 and ?p2
+    ; - The position ?pDest should be free (not occupied)
+    ; - There has to be a vertical path between ?p1 and ?p2
+    ; - There has to be a vertical path either between ?p1 and ?pDest or between ?p2 and ?pDest
+    ;
+    ; Effects:
+    ; - If there is a vertical path between ?p1 and ?pDest, it means that the car will be moved towards ?pDest and that 
+    ;   ?pDest and ?p1 will be occupied by the car; ?p2 will be free (not occupied)
+    ; - If there is a vertical path between ?p2 and ?pDest, it means that the car will be moved towards ?pDest and that 
+    ;   ?pDest and ?p2 will be occupied by the car; ?p1 will be free (not occupied)
+    
     (:action move-vertical
         :parameters (?m - car ?p1 - position ?p2 - position ?pDest - position)
         :precondition 

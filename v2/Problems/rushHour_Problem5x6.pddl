@@ -1,5 +1,13 @@
 (define (problem problem_name)
     (:domain test)
+    
+    ; |1: t  |2: r   |3:   2  |4:      |5:       |
+    ; |6:    |7:     |8:  c   |9:      |10:  c   |
+    ; |11: re|12:  d |13: 1   |14:   t |15:  2 X |
+    ; |16:   |17:    |18:     |19:   r |20:      |
+    ; |21:   |22:    |23:     |24:   1 |25:      |
+    ; |26:   |27:    |28:     |29:  m1 |30:      |
+
     (:objects
         m1 - motorcycle
         c1 c2 red - car
@@ -57,7 +65,6 @@
     (:goal
         (and
             (at red p15)
-            (at t1 p9)
         )
     )
 

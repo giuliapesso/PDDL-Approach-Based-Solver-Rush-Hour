@@ -2,6 +2,17 @@
 import solverScript
 import re
 
+# Parameters: problem -> file problem
+# The variable file is used to store the plan file returned by the solver for the specified problem file.
+# The plan file is then opened in order to be read.
+# From the plan file's lines we remove the parentheses, and we split the lines into their elements, which are:
+# - rSplit[1] = name of the vehicle to be moved
+# - rSplit[2] = coordinate that doesn't change during the movement
+# - rSPlit[-1] = last element of the line, that indicates the coordinate where the vehicle is moving to 
+# We add these elements to the array that contains all the plan actions, called movesPddl. 
+# For each move contained in movesPddl, we assign the variables xDest and yDest to the right value.
+# Return: moves -> list of moves to be executed 
+
 def extractPlan(problem):
     file = solverScript.solve(problem=problem)
     
@@ -26,16 +37,8 @@ def extractPlan(problem):
 
         moves.append([move[0],xDest,yDest])
     return moves
-    
-   
 
-# Estraiamo primo elemento = veicolo
-# Cerchiamo veicolo nella lista veicoli
-# Codifica coordinate spostamento:
-# In pddl: x = riga; In python x = colonna
-# - Se preceduto da x -> si muove hor -> la seconda coord (y = riga) resta uguale
-
- # (move [xDest, yDest]) yDest = xEstratta, xDest = ultimaCoord
+# (move [xDest, yDest]) yDest = xEstratta, xDest = ultimaCoord
 # - Se preceduto da y -> si muove ver -> la prima coord (x = col) resta uguale
 
 
