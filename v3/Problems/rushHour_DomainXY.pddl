@@ -244,8 +244,8 @@
 
                 (and
                     (at ?t ?xDest ?y)
-                    (at ?t ?x1 ?y)
-                    (at ?t ?x2 ?y)
+                    ;(at ?t ?x1 ?y)
+                    ;(at ?t ?x2 ?y)
                     (occupied ?xDest ?y)
                     (not (at ?t ?x3 ?y))
                     (not (occupied ?x3 ?y))
@@ -258,8 +258,8 @@
 
                 (and
                     (at ?t ?xDest ?y)
-                    (at ?t ?x3 ?y)
-                    (at ?t ?x2 ?y)
+                    ;(at ?t ?x3 ?y)
+                    ;(at ?t ?x2 ?y)
                     (occupied ?xDest ?y)
                     (not (at ?t ?x1 ?y))
                     (not (occupied ?x1 ?y))
@@ -303,15 +303,17 @@
             (or (next ?y1 ?yDest) (next ?yDest ?y3))
         )
         :effect (and
+            (at ?t ?x ?yDest)
+            (occupied ?x ?yDest)
             (when
 
                 (and (next ?y1 ?yDest)) ; The truck will move to the left
 
                 (and
-                    (at ?t ?x ?yDest)
-                    (at ?t ?x ?y1)
-                    (at ?t ?x ?y2)
-                    (occupied ?x ?yDest)
+                    ;(at ?t ?x ?yDest)
+                    ;(at ?t ?x ?y1)
+                    ;(at ?t ?x ?y2)
+                   
                     (not (at ?t ?x ?y3))
                     (not (occupied ?x ?y3))
                 )
@@ -322,10 +324,10 @@
                 (and (next ?yDest ?y3)) ; The truck will move to the right
 
                 (and
-                    (at ?t ?x ?yDest)
-                    (at ?t ?x ?y3)
-                    (at ?t ?x ?y2)
-                    (occupied ?x ?yDest)
+                    ;(at ?t ?x ?yDest)
+                    ;(at ?t ?x ?y3)
+                    ;(at ?t ?x ?y2)
+                    ;(occupied ?x ?yDest)
                     (not (at ?t ?x ?y1))
                     (not (occupied ?x ?y1))
                 )
