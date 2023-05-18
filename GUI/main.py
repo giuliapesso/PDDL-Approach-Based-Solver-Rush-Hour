@@ -8,7 +8,7 @@ pygame.init()
 SCREEN_WIDTH= 800
 SCREEN_HEIGHT = 600
 GRID_SIZE = 200
-problem = "v3/Problems/rushHour_Problem4x4XY.pddl"
+problem = "v3/Problems/rushHour_Problem6x6XY.pddl"
 N_GRID = ProblemParse.findBoardDim(problem)
 CELL_SIZE = GRID_SIZE/N_GRID
 RED = (255,0,0)
@@ -35,21 +35,19 @@ while not done:
     clock.tick(2)
 
     if (not moves):
-        board.mostraFinito("Unsolvable")
+        board.showLabel("Unsolvable")
     GrigliaVuota(quadratoCentrale,N_GRID).drawGriglia(screen)
     board.drawVehicles()
 
     if finito: 
-        board.mostraFinito("You win!")
+        board.showLabel("You win!")
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            print(board.getCoord(pygame.mouse.get_pos()))
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
                 if (moveApplicate < len(moves)):
-                    board.applica(moves[moveApplicate])
+                    board.apply(moves[moveApplicate])
                 else :
                     if (moves):
                         finito = True

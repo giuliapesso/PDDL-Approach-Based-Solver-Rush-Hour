@@ -8,18 +8,17 @@ class GrigliaVuota():
     outerRect: pygame.Rect
     gridSize : int
     cellSize : int
-    # rect iniziale saràa il rettangolo e size Griglia se è 8 sigifnica che sarà un 8x8
-    def __init__(self,rectIniziale : pygame.Rect,sizeGriglia :int):
-        self.outerRect = rectIniziale
-        self.gridSize = sizeGriglia
-        self.cellSize = rectIniziale.width/sizeGriglia
 
-    
+    # Constructor
+    # Parameters:
+    # - firstRect : the virtual rect where the grid will be drawn
+    # - gridSize : dimension of the grid
+    def __init__(self,firstRect : pygame.Rect,gridSize :int):
+        self.outerRect = firstRect
+        self.gridSize = gridSize
+        self.cellSize = firstRect.width/gridSize
 
-    def printGriglia(self):
-        print(5)
-
-
+    # This method draws the grid
     def drawGriglia(self, screen):
         cella = pygame.Rect(self.outerRect.left,self.outerRect.top
                             ,self.cellSize,self.cellSize)

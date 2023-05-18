@@ -18,7 +18,7 @@ def extractPlan(problem):
     
     righe=open(file.name, "r").readlines()
     movesPddl = []
-    moves = []
+    finalMoves = []
     for r in righe:
         r = re.sub("\(|\)","",r)
         rSplit = r.split()
@@ -35,8 +35,8 @@ def extractPlan(problem):
             yDest = int(re.sub("x|y","",move[2]))-1
             xDest = int(re.sub("x|y","",move[1]))-1
 
-        moves.append([move[0],xDest,yDest])
-    return moves
+        finalMoves.append([move[0],xDest,yDest])
+    return finalMoves
 
 # (move [xDest, yDest]) yDest = xEstratta, xDest = ultimaCoord
 # - Se preceduto da y -> si muove ver -> la prima coord (x = col) resta uguale
