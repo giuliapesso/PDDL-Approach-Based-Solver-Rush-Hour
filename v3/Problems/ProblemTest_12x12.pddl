@@ -1,4 +1,4 @@
-(define (problem Test8x8) (:domain domainXY)
+(define (problem Test12x12) (:domain domainXY)
 
     ; -----------------
     ; |   |   |   |   |
@@ -11,7 +11,7 @@
         m1 - motorcycle
         red - car
         t1 - truck
-        x1 x2 x3 x4 y1 y2 y3 y4 x5 y5 x6 y6 x7 y7 x8 y8 - position
+        x1 x2 x3 x4 y1 y2 y3 y4 x5 y5 x6 y6 x7 y7 x8 y8 x9 y9 x10 y10 x11 y11 x12 y12 - position
     )
     
     (:init
@@ -31,6 +31,10 @@
         (next x6 x5)
         (next x7 x6)
         (next x8 x7)
+        (next x9 x8)
+        (next x10 x9)
+        (next x11 x10)
+        (next x12 x11)
         
         (next y2 y1) 
         (next y3 y2)
@@ -39,6 +43,10 @@
         (next y6 y5)
         (next y7 y6)
         (next y8 y7)
+        (next y9 y8)
+        (next y10 y8)
+        (next y11 y10)
+        (next y12 y11)
 
         (occupied x4 y4)
         (occupied x4 y1)
