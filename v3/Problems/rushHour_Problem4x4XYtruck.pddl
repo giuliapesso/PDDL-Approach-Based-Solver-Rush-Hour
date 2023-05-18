@@ -1,7 +1,7 @@
 (define (problem problem4x4truck) (:domain domainXY)
 
     ; -----------------
-    ; | t | r | 1 |   |
+    ; | t | r | 1 |   | 
     ; | t | r | 2 |   |
     ; | t | r | 3 | x |
     ; | t | r | 4 |   |
@@ -12,8 +12,9 @@
         ;red - car
         t1 t2 t3 t4 t5 t6 t7 - truck
         x1 x2 x3 x4 y1 y2 y3 y4 - position
-        x5 x6 x7 x8 x9 x10 - position
-        y5 y6 y7 y8 y9 y10 - position
+        x1 y1 x2 y2 x3 y3 x4 y4 x5 y5 x6 y6 x7 y7 x8 y8 x9 y9 x10 y10 - position
+
+
     )
     
     (:init
