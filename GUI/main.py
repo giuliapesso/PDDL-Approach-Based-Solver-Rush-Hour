@@ -3,12 +3,20 @@ from griglia import GrigliaVuota
 from board import Board
 import ProblemParse
 import PlanParse
+from tkinter import filedialog as fd
+
+filename = fd.askopenfilename(
+    title="Select a problem",
+    initialdir="./v3/Problems",
+    filetypes=[("text files","*.pddl")])
+
 pygame.init()
 
 SCREEN_WIDTH= 800
 SCREEN_HEIGHT = 600
 GRID_SIZE = 200
-problem = "v3/Problems/rushHour_Problem6x6XY.pddl"
+#problem = "v3/Problems/rushHour_Problem6x6XY.pddl"
+problem = filename
 N_GRID = ProblemParse.findBoardDim(problem)
 CELL_SIZE = GRID_SIZE/N_GRID
 RED = (255,0,0)
