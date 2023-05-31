@@ -163,3 +163,4 @@ cython_debug/
 
 *.pddl.sp_log
 DS_STORE
+*/.DS_STORE
