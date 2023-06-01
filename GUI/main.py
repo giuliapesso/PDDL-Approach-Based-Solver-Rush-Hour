@@ -14,7 +14,7 @@ pygame.init()
 
 SCREEN_WIDTH= 800
 SCREEN_HEIGHT = 600
-GRID_SIZE = 200
+GRID_SIZE = 400
 #problem = "v3/Problems/rushHour_Problem6x6XY.pddl"
 problem = filename
 N_GRID = ProblemParse.findBoardDim(problem)
