@@ -80,6 +80,21 @@ def drawVehicle(file):
             vehicles.append(Vehicle(1,name,[[x,y]]))
     return vehicles
 
+
+def findGoal(file):
+    f,row = readFile(file)
+    leggiGoal=False
+    for r in row:
+
+        if leggiGoal:
+            r = re.sub("at|x|y|\(|\)","",r)
+            r = r.split()
+            y = int(r[1])-1
+            x = int (r[2])-1
+            return [x,y]
+        if "goal" in r:
+            leggiGoal = True
+
     
 
 

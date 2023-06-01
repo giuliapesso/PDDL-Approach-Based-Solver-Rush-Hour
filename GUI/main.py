@@ -18,6 +18,7 @@ GRID_SIZE = 200
 #problem = "v3/Problems/rushHour_Problem6x6XY.pddl"
 problem = filename
 N_GRID = ProblemParse.findBoardDim(problem)
+print(ProblemParse.findGoal(problem))
 CELL_SIZE = GRID_SIZE/N_GRID
 RED = (255,0,0)
 WHITE = (255,255,255)
@@ -46,6 +47,7 @@ while not done:
         board.showLabel("Unsolvable")
     GrigliaVuota(quadratoCentrale,N_GRID).drawGriglia(screen)
     board.drawVehicles()
+    board.drawGoal()
 
     if finito: 
         board.showLabel("You win!")

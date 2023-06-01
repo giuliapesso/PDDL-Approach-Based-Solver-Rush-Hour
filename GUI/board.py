@@ -7,6 +7,7 @@ class Board:
     vehicles = list[Vehicle]
     screen : pygame.Surface
     centerRect : pygame.Rect
+    goal : tuple[int,int]
 
     #in pixel
     cellSize : int
@@ -25,6 +26,7 @@ class Board:
         self.centerRect = centerRect
         self.cellSize=cellSize
         self.gridDim = gridDim
+        self.goal=ProblemParse.findGoal(problem)
 
     # This method returns the virtual rect where will be drawn a cell of the grid, based on the coordinates
     # given as parameters
@@ -63,6 +65,11 @@ class Board:
         top = self.centerRect.top+self.gridDim*self.cellSize
         centro = pygame.Rect(left,top,200,200)
         self.screen.blit(font.render(txt, True, green, black), centro)
+
+    def drawGoal(self):
+        left = self.centerRect.left + self.goal[0]*self.cellSize+self.cellSize/2
+        top = self.centerRect.top + self.goal[1]*self.cellSize+self.cellSize/2
+        pygame.draw.circle(self.screen,(0,255,0),(left,top),self.cellSize/2)
     
 
     
