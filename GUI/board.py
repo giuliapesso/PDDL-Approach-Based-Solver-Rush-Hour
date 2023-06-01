@@ -2,9 +2,9 @@ from vehicle import Vehicle
 import ProblemParse
 import pygame
 
-#imgRed = pygame.image.load("GUI/Images/RedIcon.png").convert()
-class Board:
 
+class Board:
+    imgRed = pygame.image.load("GUI/Images/RedIcon.png")
     grid = [] 
     vehicles = list[Vehicle]
     screen : pygame.Surface
@@ -29,9 +29,12 @@ class Board:
         self.cellSize=cellSize
         self.gridDim = gridDim
         self.goal=ProblemParse.findGoal(problem)
+        self.imgRed = self.imgRed.convert_alpha()
+        
 
     # This method returns the virtual rect where will be drawn a cell of the grid, based on the coordinates
     # given as parameters
+    # deprecato
     def getRectFromCoord(self, coords : tuple[int,int]) -> pygame.Rect:
 
         left = self.centerRect.left + coords[0]*self.cellSize
@@ -44,8 +47,10 @@ class Board:
 
     # This method draws a vehicle
     def drawVehicle(self, vehicle : Vehicle):
-        for coords in vehicle.coords:
-            self.drawRectFromCoord(coords,vehicle.color)
+        rect = vehicle.getRect(self.centerRect,self.cellSize)
+        pygame.draw.rect(self.screen,vehicle.color,rect)
+        #for coords in vehicle.coords:
+            #self.drawRectFromCoord(coords,vehicle.color)
 
     # This method draws all the vehicles
     def drawVehicles(self):
@@ -56,9 +61,12 @@ class Board:
             self.drawVehicle(e)
 
     def drawRed(self,e:Vehicle):
-        #rect=e.getRect(self.centerRect,self.cellSize)
-        #self.screen.blit(imgRed,rect)
-        pygame.draw.rect(self.screen,(255,0,0),e.getRect(self.centerRect,self.cellSize))
+        rect=e.getRect(self.centerRect,self.cellSize)
+        #imgRed = pygame.transform.scale(imgRed.convert_alpha(),rect.)
+        #imgRed = pygame.transform.scale(imgRed,(rect.size)).convert()
+        self.imgRed = pygame.transform.scale(self.imgRed,rect.size)
+        self.screen.blit(self.imgRed,rect)
+        #pygame.draw.rect(self.screen,(255,0,0),e.getRect(self.centerRect,self.cellSize))
 
 
     # This method applies the move given as parameter using the method of the Vehicle class
