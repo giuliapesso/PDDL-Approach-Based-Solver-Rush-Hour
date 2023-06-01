@@ -2,7 +2,7 @@
 from __future__ import annotations
 import math
 import numpy as np
-
+import pygame
 class Vehicle:
 
     dim : int 
@@ -58,6 +58,11 @@ class Vehicle:
         for coord in self.coords:
             dict[self.findDistance(coord,coordFrom)]=coord
         return dict[(max(dict.keys()))]
+    def findNearestFromOrigin(self):
+        dict = {}
+        for coord in self.coords:
+            dict[self.findDistance(coord,[0,0])]=coord
+        return dict[(min(dict.keys()))]
 
     # This method moves the vehicle: this means that it removes the coordinate that is the farthest from coordDest
     # and adds coordDest to coords
@@ -65,6 +70,32 @@ class Vehicle:
         self.coords.remove(self.findFarthestFrom(coordDest))
         self.coords.append(coordDest)
         print(self.coords)
+
+
+
+    def getRect(self,gridRect : pygame.Rect,cellSize):
+        
+        if self.dim ==1:
+            return pygame.Rect(gridRect.left+self.coords[0][0]*cellSize,
+                               gridRect.top+self.coords[0][1]*cellSize,cellSize,cellSize)
+        topleft = self.findNearestFromOrigin()
+        
+        left= gridRect.left+topleft[0]*cellSize
+        top = gridRect.top+topleft[1]*cellSize
+
+        for coord in self.coords:
+            if (topleft[0]==coord[0] and topleft[1]==coord[1]):
+                continue
+            if (coord[0]>topleft[0]):
+                return pygame.Rect(left,top,cellSize*self.dim,cellSize)
+            if (coord[1]>topleft[1]):
+                return pygame.Rect(left,top,cellSize,cellSize*self.dim)
+    
+    
+
+        
+
+
 
     # To string
     def __str__(self) -> str:

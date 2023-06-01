@@ -1,6 +1,8 @@
 from vehicle import Vehicle
 import ProblemParse
 import pygame
+
+#imgRed = pygame.image.load("GUI/Images/RedIcon.png").convert()
 class Board:
 
     grid = [] 
@@ -31,6 +33,7 @@ class Board:
     # This method returns the virtual rect where will be drawn a cell of the grid, based on the coordinates
     # given as parameters
     def getRectFromCoord(self, coords : tuple[int,int]) -> pygame.Rect:
+
         left = self.centerRect.left + coords[0]*self.cellSize
         top = self.centerRect.top + coords[1]*self.cellSize
         return pygame.Rect(left,top,self.cellSize,self.cellSize)
@@ -47,7 +50,16 @@ class Board:
     # This method draws all the vehicles
     def drawVehicles(self):
         for e in self.vehicles:
+            if (e.name=="red"):
+                self.drawRed(e)
+                continue
             self.drawVehicle(e)
+
+    def drawRed(self,e:Vehicle):
+        #rect=e.getRect(self.centerRect,self.cellSize)
+        #self.screen.blit(imgRed,rect)
+        pygame.draw.rect(self.screen,(255,0,0),e.getRect(self.centerRect,self.cellSize))
+
 
     # This method applies the move given as parameter using the method of the Vehicle class
     def apply(self,move):
