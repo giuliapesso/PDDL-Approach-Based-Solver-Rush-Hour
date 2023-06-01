@@ -25,13 +25,20 @@ class GrigliaVuota():
         
         pygame.draw.rect(screen,COLORE_GRIGLIA,self.outerRect,SPESSORE_GRIGLIA+1)
         
-        for row in range(self.gridSize):
-            for column in range (self.gridSize):
-                pygame.draw.rect(screen,COLORE_GRIGLIA,
-                                 pygame.Rect(self.outerRect.left+column*self.cellSize,
-                                             self.outerRect.top+row*self.cellSize
-                            ,self.cellSize,self.cellSize),
-                            SPESSORE_GRIGLIA)
+        for i in range(self.gridSize):
+            #hor
+            posInit =(self.outerRect.left,self.outerRect.top+i*self.cellSize)
+            posFin = (posInit[0]+self.cellSize*self.gridSize,posInit[1])
+            pygame.draw.line(
+                screen,COLORE_GRIGLIA,posInit,posFin,SPESSORE_GRIGLIA
+            )
+
+            #vert
+            posInit =(self.outerRect.left+i*self.cellSize,self.outerRect.top)
+            posFin = (posInit[0],posInit[1]+self.cellSize*self.gridSize)
+            pygame.draw.line(
+                screen,COLORE_GRIGLIA,posInit,posFin,SPESSORE_GRIGLIA
+            )
 
              
 

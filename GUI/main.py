@@ -45,9 +45,10 @@ while not done:
 
     if (not moves):
         board.showLabel("Unsolvable")
-    GrigliaVuota(quadratoCentrale,N_GRID).drawGriglia(screen)
+
     board.drawVehicles()
     board.drawGoal()
+    GrigliaVuota(quadratoCentrale,N_GRID).drawGriglia(screen)
 
     if finito: 
         board.showLabel("You win!")

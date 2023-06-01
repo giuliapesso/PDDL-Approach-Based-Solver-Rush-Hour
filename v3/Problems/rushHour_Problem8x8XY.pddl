@@ -88,8 +88,6 @@
     )
 
     (:goal
-        ;(at c2 x1 y4)
-        ;(at t3 x7 y6)
         (at red x3 y8)
 
     )
