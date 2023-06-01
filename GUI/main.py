@@ -63,4 +63,5 @@ while not done:
                         finito = True
                 moveApplicate = moveApplicate+1
     pygame.display.update() 
+
 pygame.quit()
