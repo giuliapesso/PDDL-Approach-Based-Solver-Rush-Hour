@@ -92,14 +92,17 @@ class Board:
         left = self.centerRect.left
         top = self.centerRect.top+self.gridDim*self.cellSize
         centro = pygame.Rect(left,top,200,200)
-        self.screen.blit(font.render(txt, True, green, black), centro)
+        self.screen.blit(font.render(txt, True, black, (255,255,255)), centro)
 
     def drawGoal(self):
-        left = self.centerRect.left + self.goal[0]*self.cellSize
-        top = self.centerRect.top + self.goal[1]*self.cellSize
+        pad = self.cellSize*0.1
+        size = self.cellSize-pad*2
+        left = self.centerRect.left + (self.goal[0]*self.cellSize)+pad
+        top = self.centerRect.top + (self.goal[1]*self.cellSize)+pad
         #pygame.draw.circle(self.screen,(0,255,0),(left,top),self.cellSize/2)
-        rect = pygame.Rect(left,top,self.cellSize,self.cellSize)
-        self.imgFlag= pygame.transform.scale(self.imgFlag,rect.size)
+        
+        rect = pygame.Rect(left,top,size,size)
+        self.imgFlag= pygame.transform.scale(self.imgFlag,(size,size))
         self.screen.blit(self.imgFlag,rect)
     
 

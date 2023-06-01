@@ -67,6 +67,8 @@ while not done:
                     if (moves):
                         finito = True
                 moveApplicate = moveApplicate+1
+            if event.key == pygame.K_RETURN and finito:
+                done = True 
     pygame.display.update() 
 
 pygame.quit()
