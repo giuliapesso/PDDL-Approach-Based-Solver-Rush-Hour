@@ -5,6 +5,7 @@ import pygame
 
 class Board:
     imgRed = pygame.image.load("GUI/Images/RedIcon.png")
+    imgFlag = pygame.image.load("GUI/Images/flag.png")
     grid = [] 
     vehicles = list[Vehicle]
     screen : pygame.Surface
@@ -30,6 +31,7 @@ class Board:
         self.gridDim = gridDim
         self.goal=ProblemParse.findGoal(problem)
         self.imgRed = self.imgRed.convert_alpha()
+        self.imgFlag = self.imgFlag.convert_alpha()
         
 
     # This method returns the virtual rect where will be drawn a cell of the grid, based on the coordinates
@@ -56,11 +58,17 @@ class Board:
     def drawVehicles(self):
         for e in self.vehicles:
             if (e.name=="red"):
-                self.drawRed(e)
+                
                 continue
             self.drawVehicle(e)
 
-    def drawRed(self,e:Vehicle):
+    def getRed(self) -> Vehicle:
+        for vehicle in self.vehicles:
+            if(vehicle.name=="red"):
+                return vehicle
+
+    def drawRed(self):
+        e = self.getRed()
         rect=e.getRect(self.centerRect,self.cellSize)
         #imgRed = pygame.transform.scale(imgRed.convert_alpha(),rect.)
         #imgRed = pygame.transform.scale(imgRed,(rect.size)).convert()
@@ -87,9 +95,12 @@ class Board:
         self.screen.blit(font.render(txt, True, green, black), centro)
 
     def drawGoal(self):
-        left = self.centerRect.left + self.goal[0]*self.cellSize+self.cellSize/2
-        top = self.centerRect.top + self.goal[1]*self.cellSize+self.cellSize/2
-        pygame.draw.circle(self.screen,(0,255,0),(left,top),self.cellSize/2)
+        left = self.centerRect.left + self.goal[0]*self.cellSize
+        top = self.centerRect.top + self.goal[1]*self.cellSize
+        #pygame.draw.circle(self.screen,(0,255,0),(left,top),self.cellSize/2)
+        rect = pygame.Rect(left,top,self.cellSize,self.cellSize)
+        self.imgFlag= pygame.transform.scale(self.imgFlag,rect.size)
+        self.screen.blit(self.imgFlag,rect)
     
 
     

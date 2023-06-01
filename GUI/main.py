@@ -45,13 +45,17 @@ while not done:
 
     if (not moves):
         board.showLabel("Unsolvable")
-    board.drawGoal()
-    board.drawVehicles()
     
-    GrigliaVuota(quadratoCentrale,N_GRID).drawGriglia(screen)
-
+    board.drawVehicles()
     if finito: 
         board.showLabel("You win!")
+    else:
+        board.drawGoal()
+    board.drawRed()
+    GrigliaVuota(quadratoCentrale,N_GRID).drawGriglia(screen)
+
+
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
