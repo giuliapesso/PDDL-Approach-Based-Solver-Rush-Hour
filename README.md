@@ -1,4 +1,4 @@
-# Sitemi_Intelligenti
+# Sistemi_Intelligenti
 In this repository you can find:
 - GUI -> it contains all the python files needed to represent the graphical user interface of the game "Rush Hour". 
 - v1, v2, v3 -> three different versions of the game "Rush Hour":
